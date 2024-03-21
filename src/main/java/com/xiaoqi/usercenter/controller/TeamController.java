@@ -19,6 +19,7 @@ import com.xiaoqi.usercenter.service.UserService;
 import com.xiaoqi.usercenter.common.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -38,9 +39,9 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class TeamController {
 
-    @Resource
+    @Autowired
     private ITeamService iTeamService;
-    @Resource
+    @Autowired
     private UserService userService;
 
     @PostMapping("/add")
