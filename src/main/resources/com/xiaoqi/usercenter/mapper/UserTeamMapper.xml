@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoqi.usercenter.mapper.UserTeamMapper">
+
+    <resultMap id="BaseResultMap" type="com.xiaoqi.usercenter.model.domain.UserTeam">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="userId" column="userId" jdbcType="BIGINT"/>
+            <result property="teamId" column="teamId" jdbcType="BIGINT"/>
+            <result property="joinTime" column="joinTime" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+            <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,userId,teamId,
+        joinTime,createTime,updateTime,
+        isDelete
+    </sql>
+
+
+    <resultMap id="findListUser" type="com.xiaoqi.usercenter.model.request.UserSearch">
+     <id  property="id" column="id"></id>
+     <result property="username"  column="username"></result>
+     <result property="avatarUrl"    column="avatarUrl"></result>
+     <result property="profile"    column="profile"></result>
+        <result property="phone" column="phone"  ></result>
+        <result property="userAccount" column="userAccount"></result>
+    </resultMap>
+
+
+    <select id="findUser"   resultMap="findListUser">
+     select u.id,u.username,u.userAccount,u.avatarUrl, u.profile,u.phone from  user u  join  user_team  t  ON u.id=t.userId
+      where  t.teamId=#{id}
+
+    </select>
+
+
+</mapper>
